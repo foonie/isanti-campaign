@@ -67,7 +67,7 @@ const benefits = [
   {
     number: "01",
     title: "Made closer to home",
-    text: "As South Africa's first locally-owned glass container manufacturer, Isanti Glass contributes to local manufacturing and works with wineries on their packaging needs.",
+    text: "As South Africa's only locally owned glass container manufacturer, Isanti Glass contributes to local manufacturing and works with wineries on their packaging needs.",
   },
   {
     number: "02",
@@ -102,7 +102,13 @@ const campaignImages = [
   },
 ];
 
-function OrderButtons({ light = false }: { light?: boolean }) {
+function OrderButtons({
+  light = false,
+  orderLabel = "Talk to Us",
+}: {
+  light?: boolean;
+  orderLabel?: string;
+}) {
   return (
     <div className="cta-row">
       <a className="button button-primary" href={RANGE_URL}>
@@ -112,7 +118,7 @@ function OrderButtons({ light = false }: { light?: boolean }) {
         className={`button ${light ? "button-outline-light" : "button-outline"}`}
         href={ORDER_URL}
       >
-        To order <span aria-hidden="true">↗</span>
+        {orderLabel} <span aria-hidden="true">↗</span>
       </a>
     </div>
   );
@@ -133,12 +139,14 @@ export default function HomePage() {
             alt="Isanti Glass — Excellence in Glass"
             width={523}
             height={689}
-            sizes="96px"
+            sizes="64px"
             loading="eager"
           />
         </a>
         <nav aria-label="Campaign navigation">
-          <a className="header-range" href={ORDER_URL}>To order</a>
+          <a className="header-range" href={ORDER_URL}>
+            Talk to Us
+          </a>
           <a className="button button-primary header-order" href={RANGE_URL}>
             Explore Our Range <span aria-hidden="true">→</span>
           </a>
@@ -150,11 +158,11 @@ export default function HomePage() {
             </svg>
           </summary>
           <nav className="mobile-menu-links" aria-label="Mobile campaign navigation">
-            <a className="button button-primary" href={RANGE_URL}>
+            <a className="button button-primary header-order" href={RANGE_URL}>
               Explore Our Range <span aria-hidden="true">→</span>
             </a>
             <a className="header-range" href={ORDER_URL}>
-              To order <span aria-hidden="true">↗</span>
+              Talk to Us
             </a>
           </nav>
         </details>
@@ -211,8 +219,8 @@ export default function HomePage() {
               <em>A future built together.</em>
             </h2>
             <p className="origin-note">
-              <strong>South Africa&apos;s first</strong>
-              locally-owned glass container manufacturer
+              <strong>South Africa&apos;s only</strong>
+              locally owned glass container manufacturer
             </p>
           </div>
           <div className="campaign-copy" data-reveal data-reveal-order="1">
@@ -295,7 +303,7 @@ export default function HomePage() {
                         Explore this bottle <span aria-hidden="true">→</span>
                       </a>
                       <a className="text-link text-link-muted" href={ORDER_URL}>
-                        To order
+                        Talk to Us
                       </a>
                     </div>
                   </div>
@@ -309,7 +317,7 @@ export default function HomePage() {
           <div className="page-wrap">
             <div className="section-heading gallery-heading" data-reveal>
               <div>
-                <p className="eyebrow">A bottle makes an impression</p>
+                <p className="eyebrow">A Bottle Is More Than Just a Bottle</p>
                 <h2 id="gallery-title">
                   Good wine. Good glass.
                   <br />
@@ -445,7 +453,7 @@ export default function HomePage() {
                 for South African wineries. Already know what you need? Get in touch
                 with the team to place your order.
               </p>
-              <OrderButtons light />
+              <OrderButtons light orderLabel="Place Your Order" />
             </div>
           </div>
         </section>

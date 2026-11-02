@@ -4,9 +4,17 @@ import { useEffect } from "react";
 
 export default function PageMotion() {
   useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".site-header");
+    const updateHeader = () => {
+      header?.classList.toggle("is-compact", window.scrollY > 24);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!("IntersectionObserver" in window) || !("animate" in Element.prototype)) {
-      return;
+      return () => window.removeEventListener("scroll", updateHeader);
     }
 
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -75,6 +83,7 @@ export default function PageMotion() {
       stop();
       preference.removeEventListener("change", start);
       document.removeEventListener("focusin", showFocusedContent);
+      window.removeEventListener("scroll", updateHeader);
     };
   }, []);
 
